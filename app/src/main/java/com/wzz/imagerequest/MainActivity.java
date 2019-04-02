@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void showImage50() {
 
-        for ( int i =0 ; i< 50 ; i++ ){
+        for ( int i =0 ; i< 10 ; i++ ){
 
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));

@@ -41,6 +41,10 @@ public class BitmapRequest {
     public void into(ImageView imageView){
         this.imageViewSoftReference = new SoftReference<>(imageView) ;
         imageView.setTag( this.urlMd5 );
+
+        // 将此请求添加到请求队列中
+        RequestManager.getInstance().addBitmapRequest( this );
+
     }
 
 

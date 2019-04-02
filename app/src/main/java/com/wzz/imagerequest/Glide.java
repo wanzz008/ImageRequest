@@ -9,7 +9,7 @@ public class Glide {
 
     public static BitmapRequest with(Context context){
         BitmapRequest bitmapRequest = new BitmapRequest(context);
-        RequestManager.getInstance().addBitmapRequest( bitmapRequest );
+
         return bitmapRequest;
     }
 }
