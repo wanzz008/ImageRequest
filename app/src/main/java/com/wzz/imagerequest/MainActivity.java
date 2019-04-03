@@ -26,13 +26,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
     public void single(View view) {
         showImage();
     }
 
     public void more(View view) {
-        showImage50();
+        showImage10();
     }
 
     private void showImage() {
@@ -41,7 +40,8 @@ public class MainActivity extends AppCompatActivity {
         imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         scrooll_line.addView( imageView );
 
-        Glide.with(this ).load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
+
+        Glide.with(this ).load("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3943723512,1898909937&fm=27&gp=0.jpg")
                 .listener(new RequestListener() {
                     @Override
                     public boolean onException() {
@@ -61,16 +61,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void showImage50() {
+    private void showImage10() {
 
-        for ( int i =0 ; i< 10 ; i++ ){
+        scrooll_line.removeAllViews();
+
+        for ( int i =0 ; i< 1 ; i++ ){
 
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             scrooll_line.addView( imageView );
 
             Glide.with(this )
-                    .load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
+//                    .load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
+                    .load("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3782685451,3066622536&fm=27&gp=0.jpg")
                     .loading(R.drawable.loading).into( imageView );
 
         }

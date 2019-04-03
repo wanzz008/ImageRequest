@@ -4,7 +4,11 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.ImageView;
+
+import com.wzz.imagerequest.MyApplication;
+import com.wzz.imagerequest.cache.DoubleLruCache;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,15 +29,20 @@ public class BitmapDispatcher extends Thread {
     @Override
     public void run() {
 
+        //   阻塞队列
         while ( !interrupted()){
             try {
+
+                /** 从队列不断轮询对象，进行处理 */
                 BitmapRequest bitmapRequest = queue.take();
+
+                Log.d("wzz-----", "run: 获取到quest.... " );
                 if ( bitmapRequest != null ){
-                    // 进行网络请求
+                    // 先展示 loading
                     showImageLoading(bitmapRequest);
                     // 从三级缓存里查找图片
                     Bitmap bitmap = requestBitmap(bitmapRequest);
-                    // 加载图片
+                    // 显示UI
                     showImage(bitmapRequest , bitmap);
 
                 }
@@ -79,13 +88,26 @@ public class BitmapDispatcher extends Thread {
         }
     }
 
+    DoubleLruCache mCache = DoubleLruCache.getInstance(MyApplication.getInstance());
     /**
      * 从三级缓存里查找图片
      * @param bitmapRequest
      * @return
      */
     private Bitmap requestBitmap(BitmapRequest bitmapRequest) {
-        Bitmap bitmap = downloadImage(bitmapRequest.getUrl());
+        // 先从缓存取
+        Bitmap bitmap = mCache.get(bitmapRequest);
+        if ( bitmap != null ){
+            return bitmap;
+        }
+        // 网络 下载一张图片 bitmap  bitmap
+        bitmap = downloadImage(bitmapRequest.getUrl());
+
+        // 添加到缓存
+        if ( bitmap != null ){
+            mCache.put( bitmapRequest , bitmap );
+        }
+
         return bitmap;
     }
 

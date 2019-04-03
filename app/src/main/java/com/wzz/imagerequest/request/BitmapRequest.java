@@ -8,6 +8,9 @@ import com.wzz.imagerequest.util.MD5Utils;
 
 import java.lang.ref.SoftReference;
 
+/**
+ * 封装请求对象
+ */
 public class BitmapRequest {
 
     private Context context;
@@ -17,32 +20,54 @@ public class BitmapRequest {
     private String urlMd5;
     private RequestListener requestListener;
 
+    // 用软引用
     private SoftReference<ImageView> imageViewSoftReference ;
 
     public BitmapRequest(Context context){
         this.context = context;
     }
 
+    /**
+     * 设置监听对象
+     * @param requestListener
+     * @return
+     */
     public BitmapRequest listener(RequestListener requestListener) {
         this.requestListener = requestListener;
         return this;
     }
 
+    /**
+     * 加载中图片
+     * @param loadingResId
+     * @return
+     */
     public BitmapRequest loading(int loadingResId){
         this.loadingResId = loadingResId ;
         return this;
     }
+
+    /**
+     * 设置url 并计算md5值 用来添加tag
+     * @param url
+     * @return
+     */
     public BitmapRequest load(String url){
         this.url = url ;
         this.urlMd5 = MD5Utils.toMD5(this.url);
         return this;
     }
 
+    /**
+     * 设置ImageView
+     * @param imageView
+     */
     public void into(ImageView imageView){
-        this.imageViewSoftReference = new SoftReference<>(imageView) ;
-        imageView.setTag( this.urlMd5 );
 
-        // 将此请求添加到请求队列中
+        this.imageViewSoftReference = new SoftReference<>(imageView) ;
+        imageView.setTag( this.urlMd5 ); // setTag的值为url的Md5
+
+        /** 将此请求添加到请求队列中 */
         RequestManager.getInstance().addBitmapRequest( this );
 
     }

@@ -17,7 +17,7 @@ public class RequestManager {
         return manager ;
     }
 
-
+    // 请求队列
     private LinkedBlockingQueue<BitmapRequest> linkedBlockingQueue = new LinkedBlockingQueue<>();
 
     private BitmapDispatcher[] dispatchers;
@@ -26,13 +26,14 @@ public class RequestManager {
         start();
     }
 
-    private void start() {
-        stop();
-        startAll();
-    }
-
+    /**
+     * 将请求对象添加到请求队列
+     * @param request
+     */
     public void addBitmapRequest(BitmapRequest request){
+
         if ( ! linkedBlockingQueue.contains( request )){
+
             try {
                 linkedBlockingQueue.put( request );
             } catch (InterruptedException e) {
@@ -44,10 +45,20 @@ public class RequestManager {
 
     }
 
+    /**
+     * 初始化的时候开始所有线程
+     */
+    private void start() {
+        stop();
+        startAll();
+    }
 
     public void startAll(){
         // 获取支持的最大线程数
         int count = Runtime.getRuntime().availableProcessors();
+
+        Log.d("wzz-----", "startAll: count:" + count );
+
         dispatchers = new BitmapDispatcher[count];
         for (int i = 0; i < dispatchers.length; i++) {
             BitmapDispatcher bitmapDispatcher = new BitmapDispatcher(linkedBlockingQueue);
