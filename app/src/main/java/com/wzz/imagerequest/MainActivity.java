@@ -13,6 +13,7 @@ import com.wzz.imagerequest.litener.RequestListener;
 
 public class MainActivity extends AppCompatActivity {
 
+    // LinearLayout
     private LinearLayout scrooll_line;
 
     @Override
@@ -68,7 +69,8 @@ public class MainActivity extends AppCompatActivity {
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             scrooll_line.addView( imageView );
 
-            Glide.with(this ).load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
+            Glide.with(this )
+                    .load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
                     .loading(R.drawable.loading).into( imageView );
 
         }
