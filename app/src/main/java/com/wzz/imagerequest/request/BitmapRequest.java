@@ -3,6 +3,7 @@ package com.wzz.imagerequest.request;
 import android.content.Context;
 import android.widget.ImageView;
 
+import com.wzz.imagerequest.R;
 import com.wzz.imagerequest.litener.RequestListener;
 import com.wzz.imagerequest.util.MD5Utils;
 
@@ -16,7 +17,7 @@ public class BitmapRequest {
     private Context context;
 
     private String url;
-    private int loadingResId;
+    private int loadingResId = R.drawable.loading; // 默认的加载中图片
     private String urlMd5;
     private RequestListener requestListener;
 

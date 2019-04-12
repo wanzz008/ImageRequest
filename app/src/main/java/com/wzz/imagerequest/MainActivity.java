@@ -65,16 +65,17 @@ public class MainActivity extends AppCompatActivity {
 
         scrooll_line.removeAllViews();
 
-        for ( int i =0 ; i< 1 ; i++ ){
+        for ( int i =0 ; i< 10 ; i++ ){
 
             ImageView imageView = new ImageView(this);
             imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             scrooll_line.addView( imageView );
 
             Glide.with(this )
-//                    .load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
-                    .load("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=3782685451,3066622536&fm=27&gp=0.jpg")
-                    .loading(R.drawable.loading).into( imageView );
+                    .load("https://10.url.cn/eth/ajNVdqHZLLAtBGoU7nQM4hYUAx3PCE7TZYCMExkDibpHgCun6hTpQSRyibSILfh5euJ8xf4gQDtDU/")
+//                    .load("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555046033070&di=20b705a3568b6d7519e1e81571a246c0&imgtype=0&src=http%3A%2F%2Fpic2.16pic.com%2F00%2F11%2F70%2F16pic_1170466_b.jpg")
+//                    .loading(R.drawable.loading)
+                    .into( imageView );
 
         }
 

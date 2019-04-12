@@ -59,7 +59,7 @@ public class RequestManager {
 
         Log.d("wzz-----", "startAll: count:" + count );
 
-        dispatchers = new BitmapDispatcher[count];
+        dispatchers = new BitmapDispatcher[1];
         for (int i = 0; i < dispatchers.length; i++) {
             BitmapDispatcher bitmapDispatcher = new BitmapDispatcher(linkedBlockingQueue);
             bitmapDispatcher.start();
